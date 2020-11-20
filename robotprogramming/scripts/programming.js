@@ -51,6 +51,11 @@ async function runProgram() {
   eval("(async () => {" + codeText + "})();");
 }
 
+async function runDefaultProgram(program) {
+  program = program.replace(/robot.sleep/g, 'await robot.sleep');
+  eval('(async () => {' + program + '})();');
+}
+
 /**
 * This function scans all users for programs and saves them onto corresponding robots.
 **/

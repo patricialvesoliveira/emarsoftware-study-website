@@ -59,7 +59,7 @@ function Database(config, readyCallback) {
   Database.loadJSLibrary(src="https://www.gstatic.com/firebasejs/6.3.0/firebase-app.js");
   Database.loadJSLibrary(src="https://www.gstatic.com/firebasejs/6.3.0/firebase-auth.js");
   Database.loadJSLibrary(src="https://www.gstatic.com/firebasejs/6.3.0/firebase-database.js");
-  Database.loadJSLibrary(src="https://www.gstatic.com/firebasejs/5.9.1/firebase-storage.js");
+  Database.loadJSLibrary(src="https://www.gstatic.com/firebasejs/5.9.1/.js");
 
   Database.signInAnonymously = function() {
     if (Database.uid == null && Database.userEmail == null) {
