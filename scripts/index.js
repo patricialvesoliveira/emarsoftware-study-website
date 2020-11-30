@@ -165,6 +165,22 @@ function startDiary() {
   window.location.href = 'diary.html';
 }
 
+function startVideo() {
+  window.location.href = 'instructionVideo.html';
+}
+
+function startHelp() {
+  window.location.href = 'help.html';
+}
+
+function startScales() {
+  window.location.href = 'scales.html';
+}
+
+function startWorkbook() {
+  // FILL IN
+}
+
 function startRobot() {
   window.location.href = 'web-robot-square.html';
 }

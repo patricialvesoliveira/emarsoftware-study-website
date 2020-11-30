@@ -50,7 +50,11 @@ function Belly(robotId, scale, resizeAxis, username) {
       Belly.bellyScreens[screenID].navButtonList &&
       Belly.bellyScreens[screenID].navButtonList.exitButton
     ) {
-      window.location.href = 'index.html';
+      if (Belly.robotId === 0) {
+        window.location.href = 'index.html';
+      } else {
+        window.location.href = 'web-robot-square.html?robot=0';
+      }
     }
   };
 
@@ -288,7 +292,8 @@ function renderBellyScreen(newScreenIndex, Belly, screenDivId = 'screenDiv') {
           *********/
     if (screen.slider.isShown) {
       var sliderMin = screen.slider.min;
-      var sliderCurrent = screen.slider.current;
+      // var sliderCurrent = screen.slider.current;
+      var sliderCurrent = 50;
       var sliderMax = screen.slider.max;
       bellyHTML += "<div class='screen-element mt-4'  style='z-index: 2'>";
       bellyHTML +=
