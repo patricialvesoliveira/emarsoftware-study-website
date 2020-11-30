@@ -216,31 +216,38 @@ class Robot {
       return buttonPressed;
     };
 
-    this._waitForAnyButton = async function () {
-      var date = new Date();
-      var buttonList = Robot.bellyScreens[Robot.currentScreen].buttons.list;
-      var buttonPressed = null;
+  this._waitForAnyButton = async function () {
+    var date = new Date();
+    var buttonList = Robot.bellyScreens[Robot.currentScreen].buttons.list;
+    var buttonPressed = null;
 
-      console.log("Will wait for any button.");
-      console.log(Robot.bellyScreens, Robot.currentScreen);
-      var waiting = true;
-      while (waiting) {
-        buttonList = Robot.bellyScreens[Robot.currentScreen].buttons.list;
-        for (var i = 0; i < buttonList.length; i++) {
-          var button = buttonList[i];
-          var currentTime = date.getTime();
-          var buttonTime = button.lastPressed;
-          if (buttonTime > currentTime) {
-            console.log('Button Pressed');
-            buttonPressed = buttonList[i].name;
-            waiting = false;
-          }
-        }
-        if (waiting)
-          await this.sleep(100);
+    console.log('Will wait for any button.');
+    var waiting = true;
+    while (waiting) {
+      buttonList = Robot.bellyScreens[Robot.currentScreen].buttons.list;
+      if (
+        Robot.bellyScreens[Robot.currentScreen].navButtonList &&
+        Robot.bellyScreens[Robot.currentScreen].navButtonList.backButton &&
+        Robot.bellyScreens[Robot.currentScreen].navButtonList.backButton
+          .lastPressed
+      ) {
+        buttonList.push(
+          Robot.bellyScreens[Robot.currentScreen].navButtonList.backButton
+        );
       }
-      return buttonPressed;
-    };
+      for (var i = 0; i < buttonList.length; i++) {
+        var button = buttonList[i];
+        var currentTime = date.getTime();
+        var buttonTime = button.lastPressed;
+        if (buttonTime > currentTime) {
+          buttonPressed = buttonList[i].name;
+          waiting = false;
+        }
+      }
+      if (waiting) await this.sleep(100);
+    }
+    return buttonPressed;
+  };
 
     this._waitForSpecificButton = async function (name) {
       var date = new Date();
@@ -353,6 +360,30 @@ class Robot {
       return new Promise(resolve => setTimeout(resolve, milliseconds));
     };
     // TODO: Add other actions
+
+    Robot.logData = async function(sliderValue, activity, location, scale) {
+      var currTime = Date.now();
+      var currDate = new Date().toDateString();
+      var dir =
+        'study_users/' +
+        firebase.auth().currentUser.displayName +
+        '/data/' +
+        activity +
+        '/' +
+        currDate; 
+      var dbRef = firebase.database().ref(dir);
+      dbRef.push().set({
+        time: currTime,
+        value: sliderValue,
+        location,
+        scale
+      });
+    }
+    
+    this.logData = async function (sliderValue, activity, location, scale) {
+      Robot.logData(sliderValue, activity, location, scale);
+    }
+
     console.log('end');
   }
 }

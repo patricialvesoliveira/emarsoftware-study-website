@@ -22,6 +22,15 @@ function databaseReadyCallback() {
         (snapshot.val() && snapshot.val().SessionStarted.date) || 'other';
       console.log(username);
     });
+  firebase.database()
+    .ref('participants')
+    .on('value', (snapshot) => {
+      let participants = snapshot.val();
+      console.log('participants', participants);
+      if (participants[displayName] == 0) {
+        document.getElementById('webRobotCard').style.display = "none";
+      }
+    })
   newFaceNotification();
   window.onbeforeunload = function () {
     if (window.location.href.includes('diary.html')) {
