@@ -178,7 +178,7 @@ function startScales() {
 }
 
 function startWorkbook() {
-  // FILL IN
+  window.location.href = 'workbook.html';
 }
 
 function startRobot() {
