@@ -387,9 +387,9 @@ function renderBellyScreen(newScreenIndex, Belly, screenDivId = 'screenDiv') {
             // Buttons with text
             if (screen.buttons.list[j].label) {
               bellyHTML +=
-                '<h2 style="max-width: 160px">' +
+                '<h2 style="max-width: 160px"><p style="font-size: 12px;">' +
                 screen.buttons.list[j].label +
-                '</h2>';
+                '</p></h2>';
             }
             bellyHTML += '</div>';
           }
@@ -406,7 +406,8 @@ function renderBellyScreen(newScreenIndex, Belly, screenDivId = 'screenDiv') {
               j +
               ")' name='button'>" +
               name +
-              '</button></div>';
+              '</button>'
+              '</div>';
           }
         }
       }
