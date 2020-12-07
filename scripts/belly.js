@@ -372,14 +372,14 @@ function renderBellyScreen(newScreenIndex, Belly, screenDivId = 'screenDiv') {
           if (screen.buttons.list[j].url) {
             var url = screen.buttons.list[j].url;
             bellyHTML +=
-              "<div style='align-self: start'>" +
+              "<div style='align-self: start; text-align: center;'>" +
               "<button class='btn btn-secondary mx-2 screen-item' " +
               "onclick='Belly.bellyInputReceived(this," +
               Belly.currentScreen +
               ',' +
               j +
               ")' name='button'>" +
-              '<div><img  src=' +
+              '<div style="text-align:center;"><img  src=' +
               url +
               " width='60' height='60'/></div><p style='font-size:16;color:white'>" +
               name +
@@ -387,7 +387,7 @@ function renderBellyScreen(newScreenIndex, Belly, screenDivId = 'screenDiv') {
             // Buttons with text
             if (screen.buttons.list[j].label) {
               bellyHTML +=
-                '<h2 style="max-width: 160px"><p style="font-size: 12px;">' +
+                '<h2 style="max-width: 100px;"><p style="font-size: 12px;">' +
                 screen.buttons.list[j].label +
                 '</p></h2>';
             }

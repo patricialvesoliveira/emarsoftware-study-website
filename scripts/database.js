@@ -97,7 +97,7 @@ function Database(config, readyCallback) {
       if (robot == null) {
         // Need to add new user information to the database
         var robotsRef = firebase.database().ref("robots");
-        var robotsToCopy = [10, 21, 22, 23, 24, 25, 26, 27, 28]; 
+        var robotsToCopy = [10, 21, 22, 23, 24, 25, 26, 27, 28, 11, 12]; 
         var upd = {
           name: displayName,
           robots: [],
