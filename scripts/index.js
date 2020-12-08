@@ -29,6 +29,8 @@ function databaseReadyCallback() {
       console.log('participants', participants);
       if (participants[displayName] == 0) {
         document.getElementById('webRobotCard').style.display = "none";
+      } else if (participants[displayName] == 1) {
+        document.getElementById('workbookCard').style.display = 'none';
       }
     })
   newFaceNotification();
